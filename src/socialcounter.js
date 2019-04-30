@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2018 Berk Soysal
+Copyright (c) 2019 Berk Soysal
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -46,22 +46,21 @@ var SocialCounter = function(callbackFunc) {
         // Empty container first to prevent multiple initialization
         container.empty();
 
-        //Total Shares
+        // Total Shares
         var socialTotalContainer = $('<div class="social-total-container"></div>').appendTo(container);
         $('<div class="social-total">0</div>').appendTo(socialTotalContainer);
         $('<div class="social-total-text">SHARES</div>').appendTo(socialTotalContainer);
 
-        //Buttons
+        // Buttons
         var buttonGroup = $('<div class="button-group"></div>').appendTo(container);
         
-        var fbButton = $('<button class="fb"><div class="count">0</div><a><i class="fa fa-facebook "></i></a></button>').appendTo(buttonGroup);
-        var gplusButton = $('<button class="gplus"><a><i class="fa fa-google-plus "></i></a></button>').appendTo(buttonGroup);
-        var twitterButton = $('<button class="twitter"><a><i class="fa fa-twitter "></i></a></button>').appendTo(buttonGroup);
-        var liButton = $('<button class="li"><a><i class="fa fa-linkedin "></i></a></button>').appendTo(buttonGroup);
-        var piButton = $('<button class="pi"><div class="count">0</div><a><i class="fa fa-pinterest "></i></a></button>').appendTo(buttonGroup);
-        var stButton = $('<button class="st"><div class="count">0</div><a><i class="fa fa-stumbleupon "></i></a></button>').appendTo(buttonGroup);
-        var tumblrButton = $('<button class="tumblr"><div class="count">0</div><a><i class="fa fa-tumblr "></i></a></button>').appendTo(buttonGroup);
-        var printButton = $('<button class="print"><a><i class="fa fa-print "></i></a></button>').appendTo(buttonGroup);
+        var fbButton = $('<button class="fb"><a><i class="fab fa-facebook-f"></i></a></button>').appendTo(buttonGroup);
+        var twitterButton = $('<button class="twitter"><a><i class="fab fa-twitter"></i></a></button>').appendTo(buttonGroup);
+        var liButton = $('<button class="li"><a><i class="fab fa-linkedin-in"></i></a></button>').appendTo(buttonGroup);
+        var piButton = $('<button class="pi"><div class="count">0</div><a><i class="fab fa-pinterest"></i></a></button>').appendTo(buttonGroup);
+        var mixButton = $('<button class="mix"><a><i class="fab fa-mix"></i></a></button>').appendTo(buttonGroup);
+        var tumblrButton = $('<button class="tumblr"><div class="count">0</div><a><i class="fab fa-tumblr"></i></a></button>').appendTo(buttonGroup);
+        var printButton = $('<button class="print"><a><i class="fa fa-print"></i></a></button>').appendTo(buttonGroup);
 
         var currentTitle = document.title;
         var windowOpenSettings = "height=550,width=525,left=100,top=100,menubar=0";
@@ -70,12 +69,6 @@ var SocialCounter = function(callbackFunc) {
             if (callbackFunc) 
                 callbackFunc();
             return window.open("https://www.facebook.com/sharer.php?u=" + this._url, "", windowOpenSettings);
-        }.bind(this));
-    
-        gplusButton.click(function() {
-            if (callbackFunc) 
-                callbackFunc();
-            return window.open("https://plus.google.com/share?url=" + this._url, "", windowOpenSettings);
         }.bind(this));
         
         twitterButton.click(function() {
@@ -100,10 +93,10 @@ var SocialCounter = function(callbackFunc) {
             document.body.appendChild(e)
         }.bind(this));
 
-        stButton.click(function() {
+        mixButton.click(function() {
             if (callbackFunc) 
                 callbackFunc();
-            return window.open("http://www.stumbleupon.com/submit?url=" + this._url, "", windowOpenSettings), !1
+            return window.open("https://mix.com/add?url=" + this._url, "", windowOpenSettings), !1
         }.bind(this));
         
         tumblrButton.click(function() {
@@ -130,18 +123,11 @@ var SocialCounter = function(callbackFunc) {
             }
             jQuery(element).text(shortenFunc(count));
             updateTotalFunc(total);
+            jQuery(".social-total-container").css("display", "block");
         };
-
-        this._getFacebookCount(function(count) {
-            callback(count, ".fb .count");
-        });
 
         var pinterestCount = this._getPinterestCount(function(count) {
             callback(count, ".pi .count");
-        });
-        
-        var stumbleuponCount = this._getStumbleuponCount(function(count) {
-            callback(count, ".st .count");
         });
 
         var tumblrCount = this._getTumblrCount(function(count) {
@@ -177,17 +163,6 @@ var SocialCounter = function(callbackFunc) {
         return n;
     }
 
-    socialCounter.prototype._getFacebookCount = function (onComplete) {
-        jQuery.getJSON("https://graph.facebook.com/?id=" + this._url, 
-        function(a) {
-            if (a.share.share_count) {
-                onComplete(parseInt(a.share.share_count));
-                return;
-            }
-            onComplete(0);
-        });
-    }
-
     socialCounter.prototype._getPinterestCount = function (onComplete) {
         jQuery.getJSON("https://api.pinterest.com/v1/urls/count.json?url=" + this._url + "&callback=?", 
         function(data) {
@@ -195,26 +170,6 @@ var SocialCounter = function(callbackFunc) {
                 onComplete(data.count);
                 return;
             }
-            onComplete(0);
-        });
-    }
-
-    socialCounter.prototype._getStumbleuponCount = function (onComplete) {
-        jQuery.getJSON('https://query.yahooapis.com/v1/public/yql?q=' +
-        encodeURIComponent('select * from htmlstring where url="http://www.stumbleupon.com/services/1.01/badge.getinfo?url=' 
-        + this._url + '" and xpath="*"') + '&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys',
-        function(response) {
-            if (response && response.query && response.query.count > 0) {
-                var s = response.query.results.result;
-                var data = s.match(new RegExp("<body>" + "(.*)" + "</body>"));
-
-                var newData = JSON.parse(data[1]);			
-            
-                if (newData && newData.result && newData.result.views) {
-                    onComplete(parseInt(newData.result.views));
-                    return;
-                }
-            } 
             onComplete(0);
         });
     }

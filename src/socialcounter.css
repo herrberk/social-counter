@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2018 Berk Soysal
+Copyright (c) 2019 Berk Soysal
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,7 @@ SOFTWARE.
 #social-counter .social-total-container {
     margin-top: 5px;
     width: 90px;
+    display: none;
 }
 
 #social-counter .social-total-container .social-total {
@@ -99,7 +100,7 @@ SOFTWARE.
 }
 
 #social-counter .button-group .fb i {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 #social-counter .button-group .fb:hover {
@@ -117,28 +118,10 @@ SOFTWARE.
 }
 
 #social-counter .button-group .twitter i {
-    font-size: 20px;
-}
-
-#social-counter .button-group .twitter:hover {
-    opacity: 0.8;
-}
-
-#social-counter .button-group .gplus {
-    background: rgba(234, 48, 50, 1);
-    background: -moz-linear-gradient(top, rgba(234, 48, 50, 1) 0%, rgba(207, 50, 52, 1) 49%, rgba(168, 32, 34, 1) 50%, rgba(234, 48, 50, 1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(234, 48, 50, 1)), color-stop(49%, rgba(207, 50, 52, 1)), color-stop(50%, rgba(168, 32, 34, 1)), color-stop(100%, rgba(234, 48, 50, 1)));
-    background: -webkit-linear-gradient(top, rgba(234, 48, 50, 1) 0%, rgba(207, 50, 52, 1) 49%, rgba(168, 32, 34, 1) 50%, rgba(234, 48, 50, 1) 100%);
-    background: -o-linear-gradient(top, rgba(234, 48, 50, 1) 0%, rgba(207, 50, 52, 1) 49%, rgba(168, 32, 34, 1) 50%, rgba(234, 48, 50, 1) 100%);
-    background: -ms-linear-gradient(top, rgba(234, 48, 50, 1) 0%, rgba(207, 50, 52, 1) 49%, rgba(168, 32, 34, 1) 50%, rgba(234, 48, 50, 1) 100%);
-    background: linear-gradient(to bottom, rgba(234, 48, 50, 1) 0%, rgba(207, 50, 52, 1) 49%, rgba(168, 32, 34, 1) 50%, rgba(234, 48, 50, 1) 100%);
-}
-
-#social-counter .button-group .gplus i {
     font-size: 19px;
 }
 
-#social-counter .button-group .gplus:hover {
+#social-counter .button-group .twitter:hover {
     opacity: 0.8;
 }
 
@@ -153,7 +136,7 @@ SOFTWARE.
 }
 
 #social-counter .button-group .li i {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 #social-counter .button-group .li:hover {
@@ -171,26 +154,26 @@ SOFTWARE.
 }
 
 #social-counter .button-group .pi i {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 #social-counter .button-group .pi:hover {
     opacity: 0.8;
 }
 
-#social-counter .button-group .st {
+#social-counter .button-group .mix {
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(235, 73, 36, 1)), color-stop(49%, rgba(252, 79, 41, 1)), color-stop(50%, rgba(209, 54, 23, 1)), color-stop(100%, rgba(235, 73, 36, 1)));
     background: -webkit-linear-gradient(top, rgba(235, 73, 36, 1) 0%, rgba(252, 79, 41, 1) 49%, rgba(209, 54, 23, 1) 50%, rgba(235, 73, 36, 1) 100%);
     background: -o-linear-gradient(top, rgba(235, 73, 36, 1) 0%, rgba(252, 79, 41, 1) 49%, rgba(209, 54, 23, 1) 50%, rgba(235, 73, 36, 1) 100%);
     background: -ms-linear-gradient(top, rgba(235, 73, 36, 1) 0%, rgba(252, 79, 41, 1) 49%, rgba(209, 54, 23, 1) 50%, rgba(235, 73, 36, 1) 100%);
-    background: linear-gradient(to bottom, rgba(235, 73, 36, 1) 0%, rgba(252, 79, 41, 1) 49%, rgba(209, 54, 23, 1) 50%, rgba(235, 73, 36, 1) 100%);
+    background: linear-gradient(to bottom, rgb(255, 103, 68) 0%, rgb(232, 197, 96) 49%, rgb(210, 35, 0) 50%, rgb(255, 47, 0) 100%);
 }
 
-#social-counter .button-group .st i {
-    font-size: 20px;
+#social-counter .button-group .mix i {
+    font-size: 19px;
 }
 
-#social-counter .button-group .st:hover {
+#social-counter .button-group .mix:hover {
     opacity: 0.8;
 }
 
@@ -205,7 +188,7 @@ SOFTWARE.
 }
 
 #social-counter .button-group .tumblr i {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 #social-counter .button-group .tumblr:hover {
@@ -223,7 +206,7 @@ SOFTWARE.
 }
 
 #social-counter .button-group .print i {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 #social-counter .button-group .print:hover {
@@ -244,13 +227,13 @@ SOFTWARE.
     ;
 }
 
-@media only screen and (max-width:991px) {
+@media only screen and (max-width:600px) {
     #social-counter .button-group .count {
         display: none;
     }
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:500px) {
     #social-counter .button-group .count {
         display: none;
     }
